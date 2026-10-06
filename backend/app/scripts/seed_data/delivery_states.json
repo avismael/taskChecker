@@ -1,0 +1,8 @@
+[
+  {"task": "SEED-TASK-01 · Comentario de texto", "student": "SEED-001", "status": "pending"},
+  {"task": "SEED-TASK-01 · Comentario de texto", "student": "SEED-002", "status": "delivered", "delivered_at": "2026-09-18T12:00:00+00:00"},
+  {"task": "SEED-TASK-01 · Comentario de texto", "student": "SEED-003", "status": "late", "delivered_at": "2026-09-25T12:00:00+00:00"},
+  {"task": "SEED-TASK-02 · Ecosistemas cercanos", "student": "SEED-001", "status": "not_delivered"},
+  {"task": "SEED-TASK-02 · Ecosistemas cercanos", "student": "SEED-002", "status": "completed", "delivered_at": "2026-09-23T12:00:00+00:00"},
+  {"task": "SEED-TASK-02 · Ecosistemas cercanos", "student": "SEED-003", "status": "delivered", "delivered_at": "2026-09-25T12:00:00+00:00"}
+]

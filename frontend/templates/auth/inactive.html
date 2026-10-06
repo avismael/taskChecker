@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="auth-layout">
+  <div class="auth-intro">
+    <p class="eyebrow">Acceso pausado</p>
+    <h1>Este espacio de trabajo no está disponible en este momento.</h1>
+    <p class="lede">Su cuenta puede estar pendiente, suspendida o desactivada. Contacte a la persona administradora para restablecer el acceso.</p>
+  </div>
+  <section class="panel auth-form" aria-labelledby="inactive-title">
+    <p class="eyebrow">Qué hacer a continuación</p>
+    <h2 id="inactive-title">Contacte a la persona administradora</h2>
+    <p class="muted">Si cree que se trata de un error, pida a una persona administradora que revise el estado de su cuenta.</p>
+    <a class="button button-primary" href="/login">Volver a iniciar sesión</a>
+  </section>
+</section>
+{% endblock %}

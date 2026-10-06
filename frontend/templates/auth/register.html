@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="auth-layout">
+  <div class="auth-intro"><p class="eyebrow">Un espacio docente privado</p><h1>Comience con el trabajo que ya realiza.</h1><p class="lede">Cree un espacio para sus clases, listas e historial de entregas. Sin calificaciones ni ruido.</p></div>
+  <form class="panel auth-form" id="register-form">
+    <div><p class="eyebrow">Nuevo espacio de trabajo</p><h2>Crear su cuenta</h2></div>
+    <label for="register-email">Correo electrónico</label><input id="register-email" name="email" type="email" autocomplete="email" required>
+    <label for="register-password">Contraseña</label><input id="register-password" name="password" type="password" autocomplete="new-password" minlength="8" required>
+    <button class="button button-primary" type="submit">Crear espacio de trabajo</button>
+    <p class="form-message" id="register-message" role="status"></p>
+    <a href="/login">¿Ya tiene una cuenta?</a>
+  </form>
+</section>
+{% endblock %}

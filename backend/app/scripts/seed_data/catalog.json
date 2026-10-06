@@ -1,0 +1,10 @@
+{
+  "tenant_name": "Espacio de desarrollo de TaskChecker",
+  "academic_year": {
+    "label": "2026-2027 (datos de desarrollo)",
+    "starts_on": "2026-09-01",
+    "ends_on": "2027-06-30"
+  },
+  "subjects": ["Lengua Española", "Ciencias Naturales"],
+  "section": "3.º ESO A"
+}

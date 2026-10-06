@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="auth-layout">
+  <div class="auth-intro">
+    <p class="eyebrow">Seguimiento de entregas estudiantiles</p>
+    <h1>Conserve la señal. Deje atrás las hojas de cálculo dispersas.</h1>
+    <p class="lede">TaskChecker ofrece al personal docente un espacio privado para tareas, evidencias y seguimiento.</p>
+  </div>
+  <form class="panel auth-form" id="login-form">
+    <div><p class="eyebrow">Te damos la bienvenida</p><h2>Iniciar sesión</h2></div>
+    <label for="email">Correo electrónico</label>
+    <input id="email" name="email" type="email" autocomplete="email" required>
+    <label for="password">Contraseña</label>
+    <input id="password" name="password" type="password" autocomplete="current-password" required>
+    <button class="button button-primary" type="submit">Abrir espacio de trabajo</button>
+    <p class="form-message" id="login-message" role="status"></p>
+    <div class="form-links"><a href="/recovery">¿Olvidó su contraseña?</a><a href="/register">Crear un espacio de trabajo</a></div>
+  </form>
+</section>
+{% endblock %}

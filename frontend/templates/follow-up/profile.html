@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Perfil del estudiante</p>
+    <h1 id="student-profile-name">Cargando perfil</h1>
+    <p class="lede" id="student-profile-meta">Historial de entregas del contexto académico seleccionado.</p>
+  </div>
+  <a class="button button-secondary" href="/follow-up">Volver al seguimiento</a>
+</section>
+<section class="metric-grid" id="student-profile" data-profile-url="/students/{{ student_id }}/profile" aria-label="Resumen de entregas del estudiante">
+  <article class="metric"><span class="metric-label">Tareas</span><strong id="profile-task-count">0</strong><span class="muted">Entregas registradas</span></article>
+  <article class="metric"><span class="metric-label">Completadas</span><strong id="profile-completed">0</strong><span class="muted">Marcadas como completadas</span></article>
+  <article class="metric metric-accent"><span class="metric-label">Cumplimiento</span><strong id="profile-compliance">0%</strong><span class="muted">Entregas completadas</span></article>
+</section>
+<section class="panel empty-state" aria-labelledby="profile-history-title">
+  <h2 id="profile-history-title">Historial de entregas</h2>
+  <p id="student-profile-status" role="status">Cargando el resumen de entregas más reciente.</p>
+</section>
+{% endblock %}

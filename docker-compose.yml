@@ -1,0 +1,35 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-taskchecker}
+      POSTGRES_USER: ${POSTGRES_USER:-taskchecker}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-taskchecker-dev-password}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - taskchecker-postgres:/var/lib/postgresql/data
+
+  app:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      TASKCHECKER_DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-taskchecker}:${POSTGRES_PASSWORD:-taskchecker-dev-password}@db:5432/${POSTGRES_DB:-taskchecker}
+      TASKCHECKER_SESSION_SECRET: ${TASKCHECKER_SESSION_SECRET:-change-this-docker-secret}
+      TASKCHECKER_STORAGE_ROOT: /app/backend/storage
+      TASKCHECKER_DEBUG: ${TASKCHECKER_DEBUG:-false}
+      TASKCHECKER_SESSION_HTTPS_ONLY: ${TASKCHECKER_SESSION_HTTPS_ONLY:-false}
+    command: ["sh", "-c", "alembic -c backend/alembic.ini upgrade head && uvicorn backend.app.main:app --host 0.0.0.0 --port 8000"]
+    ports:
+      - "${TASKCHECKER_PORT:-8080}:8000"
+    volumes:
+      - taskchecker-storage:/app/backend/storage
+
+volumes:
+  taskchecker-postgres:
+  taskchecker-storage:

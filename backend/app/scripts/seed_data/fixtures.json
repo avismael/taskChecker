@@ -1,0 +1,13 @@
+{
+  "evidence": {
+    "task": "SEED-TASK-01 · Comentario de texto",
+    "student": "SEED-002",
+    "kind": "link",
+    "url": "https://example.com/taskchecker-seed-evidence"
+  },
+  "private_observation": {
+    "task": "SEED-TASK-01 · Comentario de texto",
+    "student": "SEED-002",
+    "body": "[SEED] Revisar el comentario en la próxima tutoría."
+  }
+}

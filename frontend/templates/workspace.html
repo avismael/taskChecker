@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-heading">
+  <div><p class="eyebrow">{{ eyebrow }}</p><h1>{{ heading }}</h1><p class="lede">Una vista rápida de lo que requiere su atención antes de que el día se complique.</p></div>
+  <a class="button button-primary" href="/tasks">Revisar tareas</a>
+</section>
+<section class="metric-grid" aria-label="Resumen del espacio de trabajo">
+  <article class="metric"><span class="metric-label">Tareas activas</span><strong id="workspace-active-tasks">0</strong><span class="muted" id="workspace-active-tasks-help">Todavía no hay tareas creadas</span></article>
+  <article class="metric"><span class="metric-label">Entregas pendientes</span><strong id="workspace-pending-deliveries">0</strong><span class="muted" id="workspace-pending-deliveries-help">Tu día está despejado</span></article>
+  <article class="metric metric-accent"><span class="metric-label">Estudiantes que requieren seguimiento</span><strong id="workspace-follow-up">0</strong><span class="muted" id="workspace-follow-up-help">Las señales aparecerán aquí</span></article>
+</section>
+<section class="panel empty-state" aria-labelledby="workspace-empty-title">
+  <span class="empty-mark" aria-hidden="true">+</span><h2 id="workspace-empty-title">Comience con su contexto docente</h2>
+  <p>Cree un año académico, agregue una sección e importe estudiantes. TaskChecker construirá la lista de entregas a partir de esos datos.</p>
+  <a class="button button-secondary" href="/organization">Configurar estudiantes</a>
+</section>
+{% endblock %}

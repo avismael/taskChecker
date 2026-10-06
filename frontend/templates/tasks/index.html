@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-heading"><div><p class="eyebrow">Lista de entregas</p><h1>Tareas</h1><p class="lede">Registre lo asignado, lo recibido y los casos en los que un estudiante puede necesitar un acompañamiento adicional.</p></div></section>
+<section class="panel form-card">
+  <p class="eyebrow">Nueva tarea</p><h2>Crear una lista de entregas</h2>
+  <form class="student-form" data-json-form data-endpoint="/tasks" data-message="task-message">
+    <label for="task-year">Año académico</label><select id="task-year" name="academic_year_id" required><option value="">Seleccione un año</option></select>
+    <label for="task-subject">Asignatura</label><select id="task-subject" name="subject_id" required><option value="">Seleccione una asignatura</option></select>
+    <label for="task-section">Sección</label><select id="task-section" name="section_id" required><option value="">Seleccione una sección</option></select>
+    <label for="task-title">Título</label><input id="task-title" name="title" required>
+    <label for="task-assigned">Fecha de asignación</label><input id="task-assigned" name="assigned_on" type="date" required>
+    <label for="task-due">Fecha de entrega</label><input id="task-due" name="due_on" type="date" required>
+    <label for="task-description">Descripción</label><textarea id="task-description" name="description" rows="3"></textarea>
+    <button class="button button-primary" type="submit">Crear tarea</button><p class="form-message" id="task-message" role="status"></p>
+  </form>
+</section>
+<section class="panel empty-state"><span class="empty-mark" aria-hidden="true">□</span><h2>Su primera lista comienza aquí</h2><p>Seleccione un año activo, una asignatura y una sección. Cada estudiante elegible recibirá una fila de entrega independiente.</p></section>
+<section class="panel roster-panel" aria-labelledby="roster-title">
+  <div class="roster-toolbar"><div><p class="eyebrow">Revisión</p><h2 id="roster-title">Lista de tareas</h2></div><form id="roster-form"><label for="roster-task-id">Tarea</label><div class="inline-form"><select id="roster-task-id" name="task_id" required><option value="">Seleccione una tarea</option></select><button class="button button-secondary" type="submit">Cargar lista</button></div></form></div>
+  <p class="form-message" id="roster-message" role="status"></p>
+  <div class="table-scroll"><table class="roster-table"><caption class="sr-only">Lista de entregas de la tarea seleccionada</caption><thead><tr><th scope="col">Estudiante</th><th scope="col">Estado y fecha</th><th scope="col">Evidencia</th><th scope="col">Notas privadas</th><th scope="col"><span class="sr-only">Acciones</span></th></tr></thead><tbody id="roster-rows"><tr><td colspan="5" class="muted">Cargue una tarea para ver su lista de estudiantes.</td></tr></tbody></table></div>
+</section>
+<section class="panel form-card" aria-labelledby="task-edit-title">
+  <p class="eyebrow">Gestión</p><h2 id="task-edit-title">Editar o archivar una tarea</h2>
+  <form id="task-edit-form" class="student-form">
+    <label for="edit-task-id">Tarea</label><select id="edit-task-id" name="task_id" required><option value="">Seleccione una tarea</option></select>
+    <label for="edit-task-title">Título</label><input id="edit-task-title" name="title">
+    <label for="edit-task-due">Fecha de entrega</label><input id="edit-task-due" name="due_on" type="date">
+    <label for="edit-task-archived"><input id="edit-task-archived" name="archived" type="checkbox"> Archivar tarea</label>
+    <button class="button button-secondary" type="submit">Guardar tarea</button>
+    <p class="form-message" id="task-edit-message" role="status"></p>
+  </form>
+</section>
+{% endblock %}

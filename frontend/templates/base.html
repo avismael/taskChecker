@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% if csrf_token %}<meta name="csrf-token" content="{{ csrf_token }}">{% endif %}
+    <title>{% block title %}TaskChecker{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/base.css">
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/workspace" aria-label="Inicio de TaskChecker">TaskChecker<span>/</span></a>
+      {% if authenticated %}
+      <nav class="nav" aria-label="Navegación principal">
+        <a href="/workspace">Resumen</a>
+        <a href="/organization">Estudiantes</a>
+        <a href="/tasks">Tareas</a>
+        <a href="/follow-up">Seguimiento</a>
+        <a href="/reports">Informes</a>
+      </nav>
+      <details class="user-menu">
+        <summary aria-label="Menú de usuario">{{ account_email or "Cuenta activa" }}</summary>
+        <div class="user-menu-panel">
+          {% if account_role_label %}<span class="user-role">{{ account_role_label }}</span>{% endif %}
+          <button id="logout-button" class="button button-secondary" type="button" aria-describedby="logout-message">Cerrar sesión</button>
+          <span id="logout-message" class="form-message" role="status" aria-live="polite"></span>
+        </div>
+      </details>
+      {% endif %}
+    </header>
+    <main class="shell">{% block content %}{% endblock %}</main>
+    <script src="/static/js/app.js"></script>
+  </body>
+</html>

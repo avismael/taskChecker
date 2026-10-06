@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-heading"><div><p class="eyebrow">Configuración del espacio de trabajo</p><h1>Estudiantes y secciones</h1><p class="lede">Configure el contexto una vez y reutilícelo para cada tarea del año.</p></div></section>
+<section class="setup-grid" aria-label="Formularios de configuración académica">
+  <form class="panel form-card" data-json-form data-endpoint="/academic-years" data-message="year-message">
+    <p class="eyebrow">01 / Año</p><h2>Abrir un año académico</h2>
+    <label for="year-name">Etiqueta</label><input id="year-name" name="name" placeholder="2026-2027" required>
+    <button class="button button-primary" type="submit">Crear año</button><p class="form-message" id="year-message" role="status"></p>
+  </form>
+  <form class="panel form-card" data-json-form data-endpoint="/sections" data-message="section-message">
+    <p class="eyebrow">02 / Sección</p><h2>Agregar una sección reutilizable</h2>
+    <label for="section-name">Nombre</label><input id="section-name" name="name" placeholder="3A" required>
+    <button class="button button-primary" type="submit">Crear sección</button><p class="form-message" id="section-message" role="status"></p>
+  </form>
+  <form class="panel form-card" data-json-form data-endpoint="/subjects" data-message="subject-message">
+    <p class="eyebrow">03 / Asignatura</p><h2>Agregar una asignatura</h2>
+    <label for="subject-name">Nombre</label><input id="subject-name" name="name" placeholder="Matemáticas" required>
+    <button class="button button-primary" type="submit">Crear asignatura</button><p class="form-message" id="subject-message" role="status"></p>
+  </form>
+</section>
+<section class="panel form-card" aria-labelledby="subject-section-title">
+  <p class="eyebrow">04 / Relación académica</p><h2 id="subject-section-title">Vincular una asignatura a una sección</h2>
+  <p class="muted">Complete esta relación antes de crear tareas para esa asignatura y sección.</p>
+  <form id="subject-section-form" class="student-form">
+    <label for="subject-section-subject">Asignatura</label><select id="subject-section-subject" name="subject_id" required><option value="">Seleccione una asignatura</option></select>
+    <label for="subject-section-section">Sección</label><select id="subject-section-section" name="section_id" required><option value="">Seleccione una sección</option></select>
+    <button class="button button-primary" type="submit">Vincular asignatura y sección</button><p class="form-message" id="subject-section-message" role="status" aria-live="polite"></p>
+  </form>
+</section>
+<section class="panel form-card student-form-card">
+  <p class="eyebrow">05 / Estudiante</p><h2>Agregar un estudiante a una sección</h2>
+  <form id="student-form" class="student-form">
+    <label for="student-year">ID del año académico</label><input id="student-year" name="academic_year_id" placeholder="Pegue el ID del año del paso 01" required>
+    <label for="student-section">ID de la sección</label><input id="student-section" name="section_id" placeholder="Pegue el ID de la sección del paso 02" required>
+    <label for="student-nie">NIE</label><input id="student-nie" name="nie" required>
+    <label for="student-first-name">Nombre</label><input id="student-first-name" name="first_name" required>
+    <label for="student-last-name">Apellido</label><input id="student-last-name" name="last_name" required>
+    <button class="button button-primary" type="submit">Agregar estudiante</button><p class="form-message" id="student-message" role="status"></p>
+  </form>
+</section>
+<section class="panel roster-panel" aria-labelledby="student-list-title">
+  <div class="roster-toolbar"><div><p class="eyebrow">Consulta</p><h2 id="student-list-title">Listado de estudiantes</h2></div><p class="form-message" id="student-list-status" role="status" aria-live="polite">Cargando estudiantes...</p></div>
+  <form id="student-list-filters" class="inline-form" aria-label="Filtros del listado de estudiantes">
+    <label for="student-list-year">Año académico</label><select id="student-list-year"><option value="">Todos los años</option></select>
+    <label for="student-list-section">Sección</label><select id="student-list-section"><option value="">Todas las secciones</option></select>
+    <button class="button button-secondary" type="submit">Filtrar</button>
+  </form>
+  <div class="table-scroll"><table class="roster-table"><caption class="sr-only">Listado de estudiantes</caption><thead><tr><th>NIE</th><th>Nombre</th><th>Año académico</th><th>Sección</th><th>Perfil</th></tr></thead><tbody id="student-list-rows"><tr><td colspan="5" class="muted">Cargando estudiantes...</td></tr></tbody></table></div>
+</section>
+<section class="panel import-panel" aria-labelledby="import-title">
+  <p class="eyebrow">Importación masiva</p><h2 id="import-title">Vista previa antes de confirmar</h2>
+  <p class="muted">Cargue un archivo CSV o XLSX con NIE, nombre y apellido. Las filas no válidas impiden la confirmación.</p>
+  <form id="import-form" class="student-form">
+    <label for="import-year">Año académico</label><select id="import-year" required><option value="">Seleccione un año</option></select>
+    <label for="import-section">Sección</label><select id="import-section" required><option value="">Seleccione una sección</option></select>
+    <label for="import-file">Archivo CSV o XLSX</label><input id="import-file" type="file" accept=".csv,.xlsx" required>
+    <button class="button button-secondary" type="submit">Vista previa de importación</button>
+  </form>
+  <p class="form-message" id="import-message" role="status"></p>
+  <div class="table-scroll"><table class="roster-table"><caption class="sr-only">Filas de la vista previa de importación</caption><thead><tr><th>Fila</th><th>NIE</th><th>Nombre</th><th>Errores</th></tr></thead><tbody id="import-rows"><tr><td colspan="4" class="muted">Todavía no se ha generado una vista previa.</td></tr></tbody></table></div>
+  <button class="button button-primary" id="import-commit" type="button" disabled>Confirmar importación válida</button>
+</section>
+{% endblock %}
